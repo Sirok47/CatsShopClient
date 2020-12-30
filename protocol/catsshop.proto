@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package grpcpb;
+option go_package = "github.com/protocolbuffers/protobuf/examples/go/tutorialpb";
+service CatsShop{
+  rpc CreateCat(catparams) returns(errmsg) {}
+  rpc DeleteCat(catparams) returns (errmsg){}
+  rpc UpdateCat(catparams) returns (errmsg){}
+  rpc GetCat(catparams) returns (catparams){}
+  rpc ListCats(catparams) returns (json){}
+  rpc CreateUser(userparams) returns (errmsg){}
+  rpc DeleteUser(userparams) returns (errmsg){}
+  rpc UpdateUser(userparams) returns (errmsg){}
+  rpc Login(userparams) returns (jwtoken){}
+  rpc ListUsers(userparams) returns (json){}
+  rpc AddOperation(operationparams) returns (errmsg){}
+  rpc EditOperation(operationparams) returns (errmsg){}
+  rpc ListOperations(operationparams) returns (json){}
+  rpc GetOperation(operationparams) returns (operationparams){}
+}
+
+message catparams{
+  int32 ID = 1;
+  string CatName = 2;
+  int32 CatAge = 3;
+  string CatGender = 4;
+  string CatBreed = 5;
+  string error = 6;
+}
+
+message errmsg{
+  string error = 1;
+}
+
+message jwtoken{
+  string token = 1;
+  string error = 2;
+}
+
+message userparams{
+  string NickName = 1;
+  bool admin = 2;
+  string Password = 3;
+  string Address = 4;
+}
+
+message json{
+  string json = 1;
+  string error = 2;
+}
+
+message operationparams{
+  string NewOwnersNick = 1;
+  int32 CatID = 2;
+  string CatName = 3;
+  string Date = 4;
+  string status = 5;
+  string error = 6;
+}
